@@ -1,0 +1,38 @@
+{
+    "name": "ybooks-backend",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "rimraf ./build && tsc",
+        "lint:fix": "eslint --fix --ext .js,.mjs,.ts,.json .",
+        "dev": "nodemon ./src/index.ts localhost 3000",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.21.2",
+        "nodemon": "^3.1.9"
+    },
+    "devDependencies": {
+        "@eslint/compat": "^1.2.7",
+        "@types/cors": "^2.8.17",
+        "@types/express": "^5.0.0",
+        "@types/node": "^22.13.5",
+        "@typescript-eslint/eslint-plugin": "^8.25.0",
+        "@typescript-eslint/parser": "^8.25.0",
+        "eslint": "^9.21.0",
+        "eslint-config-prettier": "^10.0.1",
+        "eslint-plugin-import": "^2.31.0",
+        "eslint-plugin-prettier": "^5.2.3",
+        "eslint-plugin-simple-import-sort": "^12.1.1",
+        "prettier": "^3.5.2",
+        "rimraf": "^6.0.1",
+        "ts-node": "^10.9.2",
+        "tsx": "^4.19.3",
+        "typescript": "^5.7.3"
+    }
+}
