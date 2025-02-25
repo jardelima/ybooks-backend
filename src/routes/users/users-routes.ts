@@ -1,18 +1,29 @@
-import { Response, Router } from "express";
+import { Router } from "express";
+
+import { getAllUsers } from "../../controllers/users/get-all-users";
+import { registerUser } from "../../controllers/users/register-user";
 
 const router = Router();
 
-router.get("/", (_, res: Response) => {
+router.get("/users", async (_, res) => {
     try {
-        const users = [
-            {
-                name: "Teste",
-            },
-        ];
-
-        res.status(200).json(users);
+        await getAllUsers(res);
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).json({
+            message: "Erro ao processar a requisicão de ver todos usuário. \n",
+            error,
+        });
+    }
+});
+
+router.post("/users", async (req, res) => {
+    try {
+        await registerUser(req, res);
+    } catch (error) {
+        res.status(500).json({
+            message: "Erro ao processar a requisicão de cadastrar usuário. \n",
+            error,
+        });
     }
 });
 
