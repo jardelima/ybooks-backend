@@ -1,6 +1,7 @@
 import cors from "cors";
-import express, { Request, Response } from "express";
+import express from "express";
 
+import { initializeDatabase } from "./database/data-source";
 // Routes
 import users from "./routes/users/users-routes";
 
@@ -12,9 +13,8 @@ app.use(express.json());
 
 app.use("/users", users);
 
-app.get("/", (_req: Request, res: Response) => {
-    res.send("Hello World!");
-});
+// Iniciar o banco de dados
+initializeDatabase();
 
 app.listen(port, () => {
     console.log("Servidor rodando!");

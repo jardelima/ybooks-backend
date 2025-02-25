@@ -1,5 +1,9 @@
 {
     "compilerOptions": {
+        /* TypeORM */
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+
         /* Language and Environment */
         "target": "es2021",
         "lib": ["ES2021"],

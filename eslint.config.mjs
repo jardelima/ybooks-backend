@@ -20,7 +20,7 @@ const compat = new FlatCompat({
 
 export default [
     {
-        ignores: ["**/build", "**/coverage", "**/package-lock.json"],
+        ignores: ["**/build", "**/coverage", "**/package-lock.json", "./src/database/*/*.ts"],
     },
     ...compat.extends(
         "eslint:recommended",

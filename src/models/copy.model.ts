@@ -1,5 +1,5 @@
-import { Book } from "./book.model";
+import { BookModel } from "./book.model";
 
-export interface Copy extends Book {
+export interface CopyModel extends BookModel {
     code_copy: string;
 }
