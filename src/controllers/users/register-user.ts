@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 
-import { AppDataSource } from "../../database/data-source";
-import { User } from "../../database/entity/user.entity";
-import { UserModel } from "../../models/user.model";
+import { AppDataSource } from "@/database/data-source";
+import { User } from "@/database/entity/user.entity";
+import { UserModel } from "@/models/user.model";
 
 const userRepository = AppDataSource.getRepository(User);
 
@@ -13,6 +13,12 @@ export const registerUser = async (
 ): Promise<Response> => {
     try {
         const { cpf, name, birthday, address } = req.body;
+
+        const cpfDuplicated = await userRepository.findOneBy({ cpf });
+
+        if (cpfDuplicated) {
+            return res.status(409).json({ message: "O CPF informado já está cadastrado." });
+        }
 
         const newUser = new User();
         newUser.cpf = cpf;
