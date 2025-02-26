@@ -1,5 +1,11 @@
 {
     "compilerOptions": {
+        "baseUrl": "./",
+        "paths": {
+            "@/*": ["./src/*"]
+        },
+        "moduleResolution": "node",
+
         /* TypeORM */
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
