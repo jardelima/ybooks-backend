@@ -3,6 +3,7 @@ import express from "express";
 
 import { initializeDatabase } from "./database/data-source";
 // Routes
+import books from "./routes/books/books-routes";
 import users from "./routes/users/users-routes";
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api", users);
+app.use("/api", books);
 
 // Iniciar o banco de dados
 initializeDatabase();
