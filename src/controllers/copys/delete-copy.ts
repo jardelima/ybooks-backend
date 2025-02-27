@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
 import { AppDataSource } from "@/database/data-source";
-import { Book } from "@/database/entity/books.entity";
+import { Book } from "@/database/entity/book.entity";
 import { Copy } from "@/database/entity/copy.entity";
 import { CopyModel } from "@/models/copy.model";
 

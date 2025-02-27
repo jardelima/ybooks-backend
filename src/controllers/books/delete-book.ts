@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
 import { AppDataSource } from "@/database/data-source";
-import { Book } from "@/database/entity/books.entity";
+import { Book } from "@/database/entity/book.entity";
 
 const bookRepository = AppDataSource.getRepository(Book);
 

@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
-import { Book } from "./books.entity";
+import { Book } from "./book.entity";
 
 @Entity()
 export class Copy {

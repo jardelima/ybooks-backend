@@ -1,6 +1,6 @@
 import { DataSource } from "typeorm";
 
-import { Book } from "./entity/books.entity";
+import { Book } from "./entity/book.entity";
 import { Copy } from "./entity/copy.entity";
 import { User } from "./entity/user.entity";
 
