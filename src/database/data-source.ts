@@ -3,6 +3,7 @@ import { DataSource } from "typeorm";
 import { Admin } from "./entity/admin.entity";
 import { Book } from "./entity/book.entity";
 import { Copy } from "./entity/copy.entity";
+import { Rental } from "./entity/rental.entity";
 import { User } from "./entity/user.entity";
 
 export const AppDataSource = new DataSource({
@@ -14,7 +15,7 @@ export const AppDataSource = new DataSource({
     database: "ybooks",
     synchronize: true, // Em produção, defina como false e use migrações
     logging: true,
-    entities: [User, Book, Copy, Admin], // Defina as suas entidades aqui
+    entities: [User, Book, Copy, Admin, Rental], // Defina as suas entidades aqui
     migrations: [],
     subscribers: [],
 });
