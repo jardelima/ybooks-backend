@@ -23,7 +23,7 @@ export const createCopy = async (
         }
 
         const copy = new Copy();
-        copy.status = true;
+        copy.status = false;
         copy.book = bookToCopy;
 
         await copyRepository.save(copy);

@@ -33,6 +33,12 @@ export const deleteCopy = async (
             return res.status(404).json({ message: `A cópia com ID ${id} não existe.` });
         }
 
+        if (copy.status === false) {
+            return res
+                .status(401)
+                .json({ message: `Cópia não pode ser deletada por que está alugada.` });
+        }
+
         await copyRepository.remove(copy);
 
         return res.status(200).json({

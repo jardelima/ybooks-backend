@@ -34,7 +34,7 @@ export const updateCopy = async (
             return res.status(404).json({ message: `A cópia com ID ${id} não existe.` });
         }
 
-        copy.status = status ? true : false;
+        copy.status = status ? status : true;
 
         await copyRepository.save(copy);
 
