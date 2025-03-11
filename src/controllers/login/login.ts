@@ -32,7 +32,24 @@ export const login = async (
             expiresIn: "8h",
         });
 
-        return res.status(200).json({ message: "Login realizado com sucesso!", token });
+        const refreshToken = jwt.sign(
+            { id: userToLogin.id, isAdmin: userToLogin.is_admin },
+            "secretKey",
+            {
+                expiresIn: "7d",
+            },
+        );
+
+        res.cookie("refreshToken", refreshToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict",
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+        });
+
+        return res
+            .status(200)
+            .json({ message: "Login realizado com sucesso!", token, refreshToken });
     } catch (error) {
         return res.status(500).json({ message: "Erro ao tentar realizar o login. \n", error });
     }
