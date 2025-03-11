@@ -7,6 +7,7 @@ import admin from "./routes/admin/admin-routes";
 import books from "./routes/books/books-routes";
 import copys from "./routes/copys/copys-routes";
 import login from "./routes/login/login-routes";
+import rent from "./routes/rentals/rental-routes";
 import users from "./routes/users/users-routes";
 
 const app = express();
@@ -20,6 +21,7 @@ app.use("/api", users);
 app.use("/api", books);
 app.use("/api", copys);
 app.use("/api", login);
+app.use("/api", rent);
 
 // Iniciar o banco de dados
 initializeDatabase();
