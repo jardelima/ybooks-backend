@@ -5,17 +5,16 @@ import { Admin } from "@/database/entity/admin.entity";
 import { hashPassword } from "@/helpers/hash-password";
 import { AdminModel } from "@/models/admin.model";
 
-const registerRepository = AppDataSource.getRepository(Admin);
-
 export const registerAdmin = async (
-    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-    req: Request<{}, {}, AdminModel>,
+    req: Request<object, object, AdminModel>,
     res: Response,
 ): Promise<Response> => {
+    const adminRepository = AppDataSource.getRepository(Admin);
+
     try {
         const { user, password } = req.body;
 
-        const userDuplicated = await registerRepository.findOneBy({ user });
+        const userDuplicated = await adminRepository.findOneBy({ user });
 
         if (userDuplicated) {
             return res.status(400).json({ message: "Nome de usuário já cadastrado no sistema." });
@@ -28,7 +27,7 @@ export const registerAdmin = async (
         newAdmin.password = hashedPassword;
         newAdmin.is_admin = true;
 
-        await registerRepository.save(newAdmin);
+        await adminRepository.save(newAdmin);
 
         return res.status(201).json({ message: "Administrador cadastrado com sucesso!" });
     } catch (error) {
