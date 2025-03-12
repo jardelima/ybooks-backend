@@ -39,7 +39,7 @@ export const updateCopy = async (
         await copyRepository.save(copy);
 
         return res.status(200).json({
-            message: `Cópia do livro ${book.title} alugada.`,
+            message: `Cópia do livro ${book.title} atualizada com sucesso!`,
             copy,
         });
     } catch (error) {
