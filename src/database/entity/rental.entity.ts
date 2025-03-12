@@ -17,8 +17,8 @@ export class Rental {
     @Column("date")
     rentalDate!: Date; // Data do aluguel
 
-    @Column("date", { nullable: true })
-    returnDate?: Date | null; // Data de devolução (se devolvido)
+    @Column("date")
+    returnDate!: Date; // Data de devolução (se devolvido)
 
     @Column("boolean", { default: false })
     isActive!: boolean; // Controle se o aluguel está ativo (não devolvido)
