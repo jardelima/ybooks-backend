@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { MoreThan } from "typeorm";
 
 import { AppDataSource } from "@/database/data-source";
 import { Copy } from "@/database/entity/copy.entity";
@@ -38,14 +39,33 @@ export const rentBook = async (
             return res.status(400).json({ message: "Cópia do livro não disponível." });
         }
 
+        // Verificar o número de aluguéis atrasados do usuário
+        const overdueRentals = await rentalRepository.count({
+            where: {
+                user: userExist,
+                returnDate: MoreThan(new Date()), // Verificar se a data de devolução está atrasada
+                isActive: false,
+            },
+        });
+
+        if (overdueRentals >= 3) {
+            return res.status(400).json({
+                message: "Você não pode alugar mais livros devido a 3 ou mais atrasos.",
+            });
+        }
+
         copyExist.status = false;
         await copyRepository.save(copyExist);
+
+        const rentalDate = new Date();
+        const returnDate = new Date(rentalDate);
+        returnDate.setDate(rentalDate.getDate() + 7);
 
         const rental = rentalRepository.create({
             user: userExist,
             copy: copyExist,
-            rentalDate: new Date(),
-            returnDate: null,
+            rentalDate: rentalDate,
+            returnDate: returnDate,
             isActive: true,
         });
 
